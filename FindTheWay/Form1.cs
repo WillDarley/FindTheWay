@@ -40,9 +40,21 @@ namespace FindTheWay
         }
 
 
-        public void DrawGrid(int x, int y)
+        public void DrawGrid(int xSize, int ySize)
         {
-
+            Bitmap i = new Bitmap(panelVis.Width, panelVis.Height);
+            Graphics g = Graphics.FromImage(i);
+            int w = panelVis.Width / xSize;
+            int h = panelVis.Height / ySize;
+            Pen pen = new Pen(Color.Red);
+            for (int x = 0; x < xSize; x++)
+            {
+                for(int y = 0; y < ySize; y++)
+                {
+                    g.DrawRectangle(pen, x * w, y * h, w, h);
+                }
+            }
+            panelVis.BackgroundImage = i;
         }
     }
 }
