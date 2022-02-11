@@ -18,6 +18,7 @@ namespace FindTheWay
         }
 
         GridSquare[,] grid;
+        Point gridSize = new Point();
 
         private void btnGenerate_Click(object sender, EventArgs e)
         {
@@ -40,6 +41,8 @@ namespace FindTheWay
             }
 
             grid = new GridSquare[x, y];
+            gridSize.X = x;
+            gridSize.Y = y;
             for (int xPos = 0; xPos < x; xPos++)
             {
                 for (int yPos = 0; yPos < y; yPos++)
@@ -97,22 +100,19 @@ namespace FindTheWay
 
         private void Form1_Resize(object sender, EventArgs e)
         {
-            // set defaults
-            int x = 10;
-            int y = 10;
+            DrawGrid(gridSize.X, gridSize.Y);
+        }
 
-            if (
-                int.TryParse(txtXSize.Text, out x) &&
-                int.TryParse(txtYSize.Text, out y))
-            {
-                lblStatus.Text = "Drawing grid";
-            }
-            else
-            {
-                lblStatus.Text = "Invalid text: using default sizes";
-            }
+        private void panelVis_MouseMove(object sender, MouseEventArgs e)
+        {
+            lblStatus.Text = $"Mouse moved: ({e.X}, {e.Y})";
+        }
 
-            DrawGrid(x, y);
+        public Point ScreenToGrid(int screenX, int screenY)
+        {
+            
+            Point p = new Point();
+            return p;
         }
     }
 }
