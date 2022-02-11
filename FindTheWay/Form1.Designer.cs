@@ -148,6 +148,7 @@
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "The Way";
+            this.Resize += new System.EventHandler(this.Form1_Resize);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
