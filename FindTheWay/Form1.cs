@@ -178,9 +178,117 @@ namespace FindTheWay
 
             lblStatus.Text = "Finding shortest path";
 
-            //
-
             // run Dijkstra's algorithm
+
+            // https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
+            
+            // Mark all nodes unvisited. Create a set of all the unvisited nodes called the unvisited set.
+            List<GridSquare> unvisited = new List<GridSquare>();
+            foreach(GridSquare s in grid)
+            {
+                unvisited.Add(s);
+            }
+
+            /* Assign to every node a tentative distance value: 
+             * set it to zero for our initial node and to infinity for all other nodes. 
+             * The tentative distance of a node v is the length of the shortest path discovered so far 
+             * between the node v and the starting node. 
+             * Since initially no path is known to any other vertex than the source itself 
+             * (which is a path of length zero), 
+             * all other tentative distances are initially set to infinity. 
+             * Set the initial node as current.
+             */
+
+            GridSquare current = new GridSquare(0, 0);
+            GridSquare destination = new GridSquare(0, 0);
+            foreach(GridSquare s in unvisited)
+            {
+                if(s.type == SquareType.StartPoint)
+                {
+                    s.tentativeDistance = 0;
+                    current = s;
+                } else
+                {
+                    s.tentativeDistance = int.MaxValue;
+                }
+                if(s.type == SquareType.EndPoint)
+                {
+                    destination = s;
+                }
+            }
+
+            while (true)
+            {
+                /*
+                 * For the current node, consider all of its unvisited neighbors 
+                 * and calculate their tentative distances through the current node. 
+                 * Compare the newly calculated tentative distance to the current assigned value and assign the smaller one. 
+                 * For example, if the current node A is marked with a distance of 6, 
+                 * and the edge connecting it with a neighbor B has length 2, then the distance to B through A will be 6 + 2 = 8. 
+                 * If B was previously marked with a distance greater than 8 then change it to 8. 
+                 * Otherwise, the current value will be kept.
+                 */
+                List<GridSquare> unvisitedNeighbors = new List<GridSquare>();
+                addIfUnvisited(unvisitedNeighbors, current.x - 1, current.y);
+                addIfUnvisited(unvisitedNeighbors, current.x + 1, current.y);
+                addIfUnvisited(unvisitedNeighbors, current.x, current.y - 1);
+                addIfUnvisited(unvisitedNeighbors, current.x, current.y + 1);
+                foreach (GridSquare s in unvisitedNeighbors)
+                {
+                    int tentativeDistance = current.tentativeDistance + 1;
+                    if (tentativeDistance < s.tentativeDistance)
+                        s.tentativeDistance = tentativeDistance;
+                }
+
+                /*
+                 * When we are done considering all of the unvisited neighbors of the current node, 
+                 * mark the current node as visited and remove it from the unvisited set. 
+                 * A visited node will never be checked again.
+                 */
+                current.visited = true;
+                unvisited.Remove(current);
+
+                /*
+                 * If the destination node has been marked visited (when planning a route between two specific nodes) 
+                 * or if the smallest tentative distance among the nodes in the unvisited set is infinity 
+                 * (when planning a complete traversal; occurs when there is no connection between the initial node and remaining unvisited nodes), 
+                 * then stop. The algorithm has finished.
+                 */
+                 if(destination.visited)
+                {
+                    lblStatus.Text = "Found a path!";
+                   
+                    break;
+                }
+
+                // sort by tentative distance
+                unvisited.Sort();
+                if(unvisited[0].tentativeDistance == int.MaxValue)
+                {
+                    lblStatus.Text = "No path can be found";
+                    break;
+                }
+
+
+                /* 
+                 * Otherwise, select the unvisited node that is marked with the smallest tentative distance, 
+                 * set it as the new current node, and go back to step 3.
+                 */
+                unvisited[0].previous = current;
+                current = unvisited[0];
+            }
+
+        }
+
+        private void addIfUnvisited(List<GridSquare> unvisitedNeighbors, int x, int y)
+        {
+            if (x >= 0 && x <= gridSize.X && y >= 0 && y <= gridSize.Y)
+            {
+                if (!grid[x, y].visited && grid[x, y].type != SquareType.Obstacle)
+                {
+                    unvisitedNeighbors.Add(grid[x, y]);
+                }
+            }
         }
     }
 }
