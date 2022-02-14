@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.txtYSize = new System.Windows.Forms.TextBox();
@@ -38,6 +39,7 @@
             this.panelVis = new System.Windows.Forms.TabPage();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.btnFindPath = new System.Windows.Forms.ToolStripSplitButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -128,7 +130,8 @@
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lblStatus});
+            this.lblStatus,
+            this.btnFindPath});
             this.statusStrip1.Location = new System.Drawing.Point(0, 428);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(800, 22);
@@ -140,6 +143,16 @@
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(219, 17);
             this.lblStatus.Text = "Choose the grid size then press generate";
+            // 
+            // btnFindPath
+            // 
+            this.btnFindPath.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnFindPath.Image = ((System.Drawing.Image)(resources.GetObject("btnFindPath.Image")));
+            this.btnFindPath.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnFindPath.Name = "btnFindPath";
+            this.btnFindPath.Size = new System.Drawing.Size(73, 20);
+            this.btnFindPath.Text = "Find Path";
+            this.btnFindPath.ButtonClick += new System.EventHandler(this.btnFindPath_ButtonClick);
             // 
             // Form1
             // 
@@ -173,6 +186,7 @@
         private System.Windows.Forms.Button btnGenerate;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel lblStatus;
+        private System.Windows.Forms.ToolStripSplitButton btnFindPath;
     }
 }
 

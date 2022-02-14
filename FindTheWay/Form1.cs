@@ -143,5 +143,44 @@ namespace FindTheWay
             }
             DrawGrid(gridSize.X, gridSize.Y);
         }
+
+        private void btnFindPath_ButtonClick(object sender, EventArgs e)
+        {
+            // check if there's only one start point
+            int startCount = 0;
+            int endCount = 0;
+            for (int x = 0; x < gridSize.X; x++)
+            {
+                for (int y = 0; y < gridSize.Y; y++) {
+                    if (grid[x, y].type == SquareType.StartPoint)
+                    {
+                        startCount++;
+                    }
+                    if (grid[x, y].type == SquareType.EndPoint)
+                    {
+                        endCount++;
+                    }
+                }
+            }
+
+            if(startCount != 1)
+            {
+                lblStatus.Text = "You must have exactly one start point";
+                return;
+            }
+
+            // check if there's only one end point
+            if (endCount != 1)
+            {
+                lblStatus.Text = "You must have exactly one end point";
+                return;
+            }
+
+            lblStatus.Text = "Finding shortest path";
+
+            //
+
+            // run Dijkstra's algorithm
+        }
     }
 }
