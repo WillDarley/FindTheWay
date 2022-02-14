@@ -6,29 +6,31 @@ using System.Threading.Tasks;
 
 namespace FindTheWay
 {
+    public enum SquareType
+    {
+        Normal,
+        Obstacle,
+        StartPoint,
+        EndPoint
+    }
+
     class GridSquare
     {
         public int x;
         public int y;
-        public bool obstacle;
-        public bool startPoint;
-        public bool endPoint;
+        public SquareType type;
 
         /// <summary>
         /// Create a new grid square
         /// </summary>
         /// <param name="x">X coordinate</param>
         /// <param name="y">Y coordinate</param>
-        /// <param name="obstacle">True if this grid square is an obstacle</param>
-        /// <param name="startPoint">True if this is the start of the route</param>
-        /// <param name="endPoint">True if this is the end of the route</param>
-        public GridSquare(int x, int y, bool obstacle = false, bool startPoint = false, bool endPoint = false)
+        /// <param name="type">TYpe of square (defaults to normal, which isn't an obstacle or start or end point)</param>
+        public GridSquare(int x, int y, SquareType type = SquareType.Normal)
         {
             this.x = x;
             this.y = y;
-            this.obstacle = obstacle;
-            this.startPoint = startPoint;
-            this.endPoint = endPoint;
+            this.type = type;
         }
     }
 }

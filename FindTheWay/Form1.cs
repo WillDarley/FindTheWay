@@ -77,19 +77,19 @@ namespace FindTheWay
                     SolidBrush brush = brushNormal;
                     
                     // draw in red for an obstacle
-                    if(square.obstacle)
+                    if(square.type == SquareType.Obstacle)
                     {
                         brush = brushObstacle;
                     }
 
                     // change colour for the start
-                    if (square.startPoint)
+                    if (square.type == SquareType.StartPoint)
                     {
                         brush = brushStart;
                     }
 
                     // change colour for the end
-                    if (square.endPoint)
+                    if (square.type == SquareType.EndPoint)
                     {
                         brush = brushEnd;
                     }
@@ -123,7 +123,24 @@ namespace FindTheWay
         private void panelVis_MouseDown(object sender, MouseEventArgs e)
         {
             Point p = ScreenToGrid(e.X, e.Y);
-            grid[p.X, p.Y].obstacle = !grid[p.X, p.Y].obstacle;
+
+            // click once for an obstacle, twice for start point, three times for end point
+
+            switch(grid[p.X, p.Y].type)
+            {
+                case SquareType.Normal:
+                    grid[p.X, p.Y].type = SquareType.Obstacle;
+                    break;
+                case SquareType.Obstacle:
+                    grid[p.X, p.Y].type = SquareType.StartPoint;
+                    break;
+                case SquareType.StartPoint:
+                    grid[p.X, p.Y].type = SquareType.EndPoint;
+                    break;
+                case SquareType.EndPoint:
+                    grid[p.X, p.Y].type = SquareType.Normal;
+                    break;
+            }
             DrawGrid(gridSize.X, gridSize.Y);
         }
     }
