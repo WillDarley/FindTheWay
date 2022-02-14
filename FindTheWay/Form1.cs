@@ -198,7 +198,12 @@ namespace FindTheWay
             List<GridSquare> unvisited = new List<GridSquare>();
             foreach(GridSquare s in grid)
             {
-                unvisited.Add(s);
+                s.visited = false;
+                if(s.type != SquareType.Obstacle)
+                {
+                    unvisited.Add(s);
+                } 
+                    
             }
 
             /* Assign to every node a tentative distance value: 
@@ -294,13 +299,13 @@ namespace FindTheWay
         private List<GridSquare> GetUnvisitedNeighbours(GridSquare s)
         {
             List<GridSquare> neighbours = new List<GridSquare>();
-            if (s.x > 0 && !grid[s.x - 1, s.y].visited)
+            if (s.x > 0 && !grid[s.x - 1, s.y].visited && grid[s.x - 1, s.y].type != SquareType.Obstacle)
                 neighbours.Add(grid[s.x - 1, s.y]);
-            if (s.x < gridSize.X - 1 && !grid[s.x + 1, s.y].visited)
+            if (s.x < gridSize.X - 1 && !grid[s.x + 1, s.y].visited && grid[s.x + 1, s.y].type != SquareType.Obstacle)
                 neighbours.Add(grid[s.x + 1, s.y]);
-            if (s.y > 0 && !grid[s.x, s.y - 1].visited)
+            if (s.y > 0 && !grid[s.x, s.y - 1].visited && grid[s.x, s.y - 1].type != SquareType.Obstacle)
                 neighbours.Add(grid[s.x, s.y - 1]);
-            if (s.y < gridSize.Y - 1 && !grid[s.x, s.y + 1].visited)
+            if (s.y < gridSize.Y - 1 && !grid[s.x, s.y + 1].visited && grid[s.x, s.y + 1].type != SquareType.Obstacle)
                 neighbours.Add(grid[s.x, s.y + 1]);
             return neighbours;
         }
