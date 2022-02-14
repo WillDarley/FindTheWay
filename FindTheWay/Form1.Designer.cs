@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.txtYSize = new System.Windows.Forms.TextBox();
@@ -147,7 +146,6 @@
             // btnFindPath
             // 
             this.btnFindPath.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btnFindPath.Image = ((System.Drawing.Image)(resources.GetObject("btnFindPath.Image")));
             this.btnFindPath.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnFindPath.Name = "btnFindPath";
             this.btnFindPath.Size = new System.Drawing.Size(73, 20);
@@ -161,6 +159,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tabControl1);
+            this.DoubleBuffered = true;
             this.Name = "Form1";
             this.Text = "The Way";
             this.Resize += new System.EventHandler(this.Form1_Resize);

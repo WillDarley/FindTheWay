@@ -56,7 +56,7 @@ namespace FindTheWay
             DrawGrid(x, y);
         }
 
-
+        
         public void DrawGrid(int xSize, int ySize, GridSquare destination = null)
         {
             Bitmap i = new Bitmap(panelVis.Width, panelVis.Height);
@@ -64,7 +64,7 @@ namespace FindTheWay
             int w = panelVis.Width / xSize;
             int h = panelVis.Height / ySize;
             Pen pen = new Pen(Color.Black);
-            SolidBrush brushNormal = new SolidBrush(Color.Blue);
+            SolidBrush brushNormal = new SolidBrush(Color.White);
             SolidBrush brushObstacle = new SolidBrush(Color.Red);
             SolidBrush brushStart = new SolidBrush(Color.Green);
             SolidBrush brushEnd = new SolidBrush(Color.Black);
@@ -97,7 +97,7 @@ namespace FindTheWay
                     g.DrawRectangle(pen, x * w, y * h, w, h);
                 }
             }
-            Pen penPath = new Pen(Color.White, 5);
+            Pen penPath = new Pen(Color.Blue, 5);
             while(destination != null)
             {
                 if (destination.previous != null)
