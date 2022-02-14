@@ -14,7 +14,7 @@ namespace FindTheWay
         EndPoint
     }
 
-    class GridSquare: IComparable<GridSquare>
+    public class GridSquare: IComparable<GridSquare>
     {
         public int x;
         public int y;

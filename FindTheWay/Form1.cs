@@ -57,7 +57,7 @@ namespace FindTheWay
         }
 
 
-        public void DrawGrid(int xSize, int ySize)
+        public void DrawGrid(int xSize, int ySize, GridSquare destination = null)
         {
             Bitmap i = new Bitmap(panelVis.Width, panelVis.Height);
             Graphics g = Graphics.FromImage(i);
@@ -96,6 +96,18 @@ namespace FindTheWay
                     g.FillRectangle(brush, x * w, y * h, w, h);
                     g.DrawRectangle(pen, x * w, y * h, w, h);
                 }
+            }
+            Pen penPath = new Pen(Color.White, 5);
+            while(destination != null)
+            {
+                if (destination.previous != null)
+                {
+                    
+                    g.DrawLine(penPath, destination.x * w + w/2, destination.y * h + h/2,
+                        destination.previous.x * w + w/2, destination.previous.y * h + h/2);
+                    g.FillEllipse(brushStart, destination.x * w + w / 2 - 10, destination.y * h + h / 2 - 10, 20, 20);
+                }
+                destination = destination.previous;
             }
             panelVis.BackgroundImage = i;
         }
@@ -199,8 +211,8 @@ namespace FindTheWay
              * Set the initial node as current.
              */
 
-            GridSquare current = new GridSquare(0, 0);
-            GridSquare destination = new GridSquare(0, 0);
+            GridSquare current = null;
+            GridSquare destination = null;
             foreach(GridSquare s in unvisited)
             {
                 if(s.type == SquareType.StartPoint)
@@ -228,16 +240,16 @@ namespace FindTheWay
                  * If B was previously marked with a distance greater than 8 then change it to 8. 
                  * Otherwise, the current value will be kept.
                  */
-                List<GridSquare> unvisitedNeighbors = new List<GridSquare>();
-                addIfUnvisited(unvisitedNeighbors, current.x - 1, current.y);
-                addIfUnvisited(unvisitedNeighbors, current.x + 1, current.y);
-                addIfUnvisited(unvisitedNeighbors, current.x, current.y - 1);
-                addIfUnvisited(unvisitedNeighbors, current.x, current.y + 1);
+                List<GridSquare> unvisitedNeighbors = GetUnvisitedNeighbours(current);
+                
                 foreach (GridSquare s in unvisitedNeighbors)
                 {
                     int tentativeDistance = current.tentativeDistance + 1;
                     if (tentativeDistance < s.tentativeDistance)
+                    {
                         s.tentativeDistance = tentativeDistance;
+                        s.previous = current;
+                    }
                 }
 
                 /*
@@ -257,7 +269,7 @@ namespace FindTheWay
                  if(destination.visited)
                 {
                     lblStatus.Text = "Found a path!";
-                   
+                    DrawGrid(gridSize.X, gridSize.Y, destination);
                     break;
                 }
 
@@ -274,15 +286,28 @@ namespace FindTheWay
                  * Otherwise, select the unvisited node that is marked with the smallest tentative distance, 
                  * set it as the new current node, and go back to step 3.
                  */
-                unvisited[0].previous = current;
                 current = unvisited[0];
             }
 
         }
 
+        private List<GridSquare> GetUnvisitedNeighbours(GridSquare s)
+        {
+            List<GridSquare> neighbours = new List<GridSquare>();
+            if (s.x > 0 && !grid[s.x - 1, s.y].visited)
+                neighbours.Add(grid[s.x - 1, s.y]);
+            if (s.x < gridSize.X - 1 && !grid[s.x + 1, s.y].visited)
+                neighbours.Add(grid[s.x + 1, s.y]);
+            if (s.y > 0 && !grid[s.x, s.y - 1].visited)
+                neighbours.Add(grid[s.x, s.y - 1]);
+            if (s.y < gridSize.Y - 1 && !grid[s.x, s.y + 1].visited)
+                neighbours.Add(grid[s.x, s.y + 1]);
+            return neighbours;
+        }
+
         private void addIfUnvisited(List<GridSquare> unvisitedNeighbors, int x, int y)
         {
-            if (x >= 0 && x <= gridSize.X && y >= 0 && y <= gridSize.Y)
+            if (x >= 0 && x < gridSize.X && y >= 0 && y < gridSize.Y)
             {
                 if (!grid[x, y].visited && grid[x, y].type != SquareType.Obstacle)
                 {
