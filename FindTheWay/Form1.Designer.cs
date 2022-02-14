@@ -122,6 +122,7 @@
             this.panelVis.TabIndex = 1;
             this.panelVis.Text = "Visualisation";
             this.panelVis.UseVisualStyleBackColor = true;
+            this.panelVis.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelVis_MouseDown);
             this.panelVis.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelVis_MouseMove);
             // 
             // statusStrip1

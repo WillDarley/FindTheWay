@@ -63,35 +63,37 @@ namespace FindTheWay
             Graphics g = Graphics.FromImage(i);
             int w = panelVis.Width / xSize;
             int h = panelVis.Height / ySize;
-            Pen penNormal = new Pen(Color.Blue);
-            Pen penObstacle = new Pen(Color.Red);
-            Pen penStart = new Pen(Color.Green);
-            Pen penEnd = new Pen(Color.Black);
+            Pen pen = new Pen(Color.Black);
+            SolidBrush brushNormal = new SolidBrush(Color.Blue);
+            SolidBrush brushObstacle = new SolidBrush(Color.Red);
+            SolidBrush brushStart = new SolidBrush(Color.Green);
+            SolidBrush brushEnd = new SolidBrush(Color.Black);
 
             for (int x = 0; x < xSize; x++)
             {
                 for(int y = 0; y < ySize; y++)
                 {
                     GridSquare square = grid[x, y];
-                    Pen pen = penNormal;
+                    SolidBrush brush = brushNormal;
                     
                     // draw in red for an obstacle
                     if(square.obstacle)
                     {
-                        pen = penObstacle;
+                        brush = brushObstacle;
                     }
 
                     // change colour for the start
                     if (square.startPoint)
                     {
-                        pen = penStart;
+                        brush = brushStart;
                     }
 
                     // change colour for the end
                     if (square.endPoint)
                     {
-                        pen = penEnd;
+                        brush = brushEnd;
                     }
+                    g.FillRectangle(brush, x * w, y * h, w, h);
                     g.DrawRectangle(pen, x * w, y * h, w, h);
                 }
             }
@@ -105,14 +107,24 @@ namespace FindTheWay
 
         private void panelVis_MouseMove(object sender, MouseEventArgs e)
         {
-            lblStatus.Text = $"Mouse moved: ({e.X}, {e.Y})";
+            Point gridCoordinates = ScreenToGrid(e.X, e.Y);
+            lblStatus.Text = $"Mouse moved: ({e.X}, {e.Y}) which is grid coordinates: ({gridCoordinates.X},{gridCoordinates.Y})";
         }
 
         public Point ScreenToGrid(int screenX, int screenY)
         {
             
             Point p = new Point();
+            p.X = screenX * gridSize.X / panelVis.Width;
+            p.Y = screenY * gridSize.Y / panelVis.Height;
             return p;
+        }
+
+        private void panelVis_MouseDown(object sender, MouseEventArgs e)
+        {
+            Point p = ScreenToGrid(e.X, e.Y);
+            grid[p.X, p.Y].obstacle = !grid[p.X, p.Y].obstacle;
+            DrawGrid(gridSize.X, gridSize.Y);
         }
     }
 }
