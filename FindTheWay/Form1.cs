@@ -226,7 +226,23 @@ namespace FindTheWay
              * Otherwise, the current value will be kept.
              */
             List<GridSquare> unvisitedNeighbours = GetUnvisitedNeighbours(currentNode);
-             
+            foreach(GridSquare g in unvisitedNeighbours)
+            {
+                int tentativeDistance = currentNode.tentativeDistance + 1;
+                if(tentativeDistance < g.tentativeDistance)
+                {
+                    g.tentativeDistance = tentativeDistance;
+                }
+            }
+
+            /*
+             * When we are done considering all of the unvisited neighbors of the current node, 
+             * mark the current node as visited and remove it from the unvisited set. 
+             * A visited node will never be checked again.
+             */
+            currentNode.visited = true;
+            unvisitedNodes.Remove(currentNode);
+
 
         }
 
