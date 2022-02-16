@@ -239,9 +239,40 @@ namespace FindTheWay
                 GridSquare n = grid[currentNode.x - 1, currentNode.y];
                 if (n.type != SquareType.Obstacle && !n.visited)
                 {
-                    neighbours.Add(grid[currentNode.x - 1, currentNode.y]);
+                    neighbours.Add(n);
                 }
             }
+
+            // add square on the right
+            if (currentNode.x < gridSize.X - 1)
+            {
+                GridSquare n = grid[currentNode.x + 1, currentNode.y];
+                if (n.type != SquareType.Obstacle && !n.visited)
+                {
+                    neighbours.Add(n);
+                }
+            }
+
+            // add square above
+            if (currentNode.y > 0)
+            {
+                GridSquare n = grid[currentNode.x, currentNode.y - 1];
+                if (n.type != SquareType.Obstacle && !n.visited)
+                {
+                    neighbours.Add(n);
+                }
+            }
+
+            // add square below
+            if (currentNode.y < gridSize.Y - 1)
+            {
+                GridSquare n = grid[currentNode.x, currentNode.y + 1];
+                if (n.type != SquareType.Obstacle && !n.visited)
+                {
+                    neighbours.Add(n);
+                }
+            }
+            return neighbours;
         }
     }
 }
