@@ -14,7 +14,7 @@ namespace FindTheWay
         EndPoint
     }
 
-    class GridSquare
+    class GridSquare : IComparable<GridSquare>
     {
         public int x;
         public int y;
@@ -33,6 +33,11 @@ namespace FindTheWay
             this.x = x;
             this.y = y;
             this.type = type;
+        }
+
+        public int CompareTo(GridSquare other)
+        {
+            return tentativeDistance - other.tentativeDistance;
         }
     }
 }

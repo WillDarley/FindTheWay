@@ -190,7 +190,8 @@ namespace FindTheWay
              */
             List<GridSquare> unvisitedNodes = new List<GridSquare>();
             GridSquare currentNode = null;
-            foreach(GridSquare g in grid)
+            GridSquare destinationNode = null;
+            foreach (GridSquare g in grid)
             {
                 if(g.type != SquareType.Obstacle)
                 {
@@ -200,6 +201,10 @@ namespace FindTheWay
                 if(g.type == SquareType.StartPoint)
                 {
                     currentNode = g;
+                }
+                if (g.type == SquareType.EndPoint)
+                {
+                    destinationNode = g;
                 }
             }
 
@@ -243,7 +248,13 @@ namespace FindTheWay
             currentNode.visited = true;
             unvisitedNodes.Remove(currentNode);
 
-
+            /*
+             * If the destination node has been marked visited 
+             * or if the smallest tentative distance among the nodes in the unvisited set is infinity 
+             * (occurs when there is no connection between the initial node and remaining unvisited nodes), 
+             * then stop. The algorithm has finished.
+             */
+            unvisitedNodes.Sort();
         }
 
         private List<GridSquare> GetUnvisitedNeighbours(GridSquare currentNode)
