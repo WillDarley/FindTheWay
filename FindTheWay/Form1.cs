@@ -238,6 +238,7 @@ namespace FindTheWay
                     if (tentativeDistance < g.tentativeDistance)
                     {
                         g.tentativeDistance = tentativeDistance;
+                        g.previous = currentNode;
                     }
                 }
 
