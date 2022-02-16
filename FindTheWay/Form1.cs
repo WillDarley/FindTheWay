@@ -185,11 +185,63 @@ namespace FindTheWay
             //
 
             // run Dijkstra's algorithm
+            /*
+             * 1) Mark all nodes unvisited. Create a set of all the unvisited nodes called the unvisited set.
+             */
+            List<GridSquare> unvisitedNodes = new List<GridSquare>();
+            GridSquare currentNode = null;
+            foreach(GridSquare g in grid)
+            {
+                if(g.type != SquareType.Obstacle)
+                {
+                    unvisitedNodes.Add(g);
+                    g.tentativeDistance = int.MaxValue;
+                }
+                if(g.type == SquareType.StartPoint)
+                {
+                    currentNode = g;
+                }
+            }
+
+            /*
+             * Assign to every node a tentative distance value: 
+             * set it to zero for our initial node and to infinity for all other nodes. 
+             * The tentative distance of a node v is the length of the shortest path discovered so far between the node v 
+             * and the starting node. 
+             * Since initially no path is known to any other vertex than the source itself 
+             * (which is a path of length zero), 
+             * all other tentative distances are initially set to infinity. 
+             * Set the initial node as current.[15]
+             */
+            currentNode.tentativeDistance = 0;
+
+            /*
+             * For the current node, consider all of its unvisited neighbors 
+             * and calculate their tentative distances through the current node. 
+             * Compare the newly calculated tentative distance to the current assigned value and assign the smaller one. 
+             * For example, if the current node A is marked with a distance of 6, 
+             * and the edge connecting it with a neighbor B has length 2, 
+             * then the distance to B through A will be 6 + 2 = 8. 
+             * If B was previously marked with a distance greater than 8 then change it to 8. 
+             * Otherwise, the current value will be kept.
+             */
+            List<GridSquare> unvisitedNeighbours = GetUnvisitedNeighbours(currentNode);
+             
+
         }
 
-        private void panelVis_Click(object sender, EventArgs e)
+        private List<GridSquare> GetUnvisitedNeighbours(GridSquare currentNode)
         {
-
+            List<GridSquare> neighbours = new List<GridSquare>();
+            // add square on the left
+            if (currentNode.x > 0)
+            {
+                GridSquare n = grid[currentNode.x - 1, currentNode.y];
+                if (n.type != SquareType.Obstacle && !n.visited)
+                {
+                    neighbours.Add(grid[currentNode.x - 1, currentNode.y]);
+                }
+            }
         }
     }
 }

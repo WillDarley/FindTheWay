@@ -19,6 +19,8 @@ namespace FindTheWay
         public int x;
         public int y;
         public SquareType type;
+        public bool visited;
+        public int tentativeDistance;
 
         /// <summary>
         /// Create a new grid square
