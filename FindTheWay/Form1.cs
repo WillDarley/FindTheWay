@@ -219,42 +219,60 @@ namespace FindTheWay
              * Set the initial node as current.[15]
              */
             currentNode.tentativeDistance = 0;
-
-            /*
-             * For the current node, consider all of its unvisited neighbors 
-             * and calculate their tentative distances through the current node. 
-             * Compare the newly calculated tentative distance to the current assigned value and assign the smaller one. 
-             * For example, if the current node A is marked with a distance of 6, 
-             * and the edge connecting it with a neighbor B has length 2, 
-             * then the distance to B through A will be 6 + 2 = 8. 
-             * If B was previously marked with a distance greater than 8 then change it to 8. 
-             * Otherwise, the current value will be kept.
-             */
-            List<GridSquare> unvisitedNeighbours = GetUnvisitedNeighbours(currentNode);
-            foreach(GridSquare g in unvisitedNeighbours)
+            while (!destinationNode.visited)
             {
-                int tentativeDistance = currentNode.tentativeDistance + 1;
-                if(tentativeDistance < g.tentativeDistance)
+                /*
+                 * For the current node, consider all of its unvisited neighbors 
+                 * and calculate their tentative distances through the current node. 
+                 * Compare the newly calculated tentative distance to the current assigned value and assign the smaller one. 
+                 * For example, if the current node A is marked with a distance of 6, 
+                 * and the edge connecting it with a neighbor B has length 2, 
+                 * then the distance to B through A will be 6 + 2 = 8. 
+                 * If B was previously marked with a distance greater than 8 then change it to 8. 
+                 * Otherwise, the current value will be kept.
+                 */
+                List<GridSquare> unvisitedNeighbours = GetUnvisitedNeighbours(currentNode);
+                foreach (GridSquare g in unvisitedNeighbours)
                 {
-                    g.tentativeDistance = tentativeDistance;
+                    int tentativeDistance = currentNode.tentativeDistance + 1;
+                    if (tentativeDistance < g.tentativeDistance)
+                    {
+                        g.tentativeDistance = tentativeDistance;
+                    }
                 }
+
+                /*
+                 * When we are done considering all of the unvisited neighbors of the current node, 
+                 * mark the current node as visited and remove it from the unvisited set. 
+                 * A visited node will never be checked again.
+                 */
+                currentNode.visited = true;
+                unvisitedNodes.Remove(currentNode);
+
+                /*
+                 * If the destination node has been marked visited 
+                 * or if the smallest tentative distance among the nodes in the unvisited set is infinity 
+                 * (occurs when there is no connection between the initial node and remaining unvisited nodes), 
+                 * then stop. The algorithm has finished.
+                 * Otherwise, select the unvisited node that is marked with the smallest tentative 
+                 * distance, set it as the new current node, and go back to step 3.
+                 */
+                unvisitedNodes.Sort();
+                if(unvisitedNodes.Count > 0)
+                {
+                    currentNode = unvisitedNodes[0];
+                    if(currentNode.tentativeDistance == int.MaxValue)
+                    {
+                        lblStatus.Text = "Could not find a route";
+                        break;
+                    }
+                } else
+                {
+                    lblStatus.Text = "No more nodes to explore";
+                    break;
+                } 
             }
-
-            /*
-             * When we are done considering all of the unvisited neighbors of the current node, 
-             * mark the current node as visited and remove it from the unvisited set. 
-             * A visited node will never be checked again.
-             */
-            currentNode.visited = true;
-            unvisitedNodes.Remove(currentNode);
-
-            /*
-             * If the destination node has been marked visited 
-             * or if the smallest tentative distance among the nodes in the unvisited set is infinity 
-             * (occurs when there is no connection between the initial node and remaining unvisited nodes), 
-             * then stop. The algorithm has finished.
-             */
-            unvisitedNodes.Sort();
+            lblStatus.Text = "Route found!";
         }
 
         private List<GridSquare> GetUnvisitedNeighbours(GridSquare currentNode)
