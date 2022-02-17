@@ -72,6 +72,7 @@ namespace FindTheWay
             SolidBrush brushObstacle = new SolidBrush(Color.Black);
             SolidBrush brushStart = new SolidBrush(Color.Green);
             SolidBrush brushEnd = new SolidBrush(Color.Red);
+            SolidBrush brushTrail = new SolidBrush(Color.DarkBlue);
 
             for (int x = 0; x < xSize; x++)
             {
@@ -167,7 +168,7 @@ namespace FindTheWay
                 }
             }
 
-            if(startCount != 1)
+            if(startCount != 1)  // validation
             {
                 lblStatus.Text = "You must have exactly one start point";
                 return;
@@ -206,6 +207,8 @@ namespace FindTheWay
                 {
                     destinationNode = g;
                 }
+
+
             }
 
             /*
@@ -319,6 +322,11 @@ namespace FindTheWay
                 }
             }
             return neighbours;
+        }
+
+        static void Trail()
+        {
+           destin
         }
 
     }
