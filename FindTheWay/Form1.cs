@@ -68,10 +68,10 @@ namespace FindTheWay
             int w = panelVis.Width / xSize;
             int h = panelVis.Height / ySize;
             Pen pen = new Pen(Color.Black);
-            SolidBrush brushNormal = new SolidBrush(Color.Blue);
-            SolidBrush brushObstacle = new SolidBrush(Color.Red);
+            SolidBrush brushNormal = new SolidBrush(Color.Gray);
+            SolidBrush brushObstacle = new SolidBrush(Color.Black);
             SolidBrush brushStart = new SolidBrush(Color.Green);
-            SolidBrush brushEnd = new SolidBrush(Color.Black);
+            SolidBrush brushEnd = new SolidBrush(Color.Red);
 
             for (int x = 0; x < xSize; x++)
             {
@@ -320,5 +320,6 @@ namespace FindTheWay
             }
             return neighbours;
         }
+
     }
 }
