@@ -40,6 +40,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.btnFindPath = new System.Windows.Forms.ToolStripSplitButton();
+            this.btnHelp = new System.Windows.Forms.ToolStripSplitButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -131,7 +132,8 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblStatus,
-            this.btnFindPath});
+            this.btnFindPath,
+            this.btnHelp});
             this.statusStrip1.Location = new System.Drawing.Point(0, 428);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(800, 22);
@@ -153,6 +155,16 @@
             this.btnFindPath.Size = new System.Drawing.Size(73, 20);
             this.btnFindPath.Text = "Find Path";
             this.btnFindPath.ButtonClick += new System.EventHandler(this.btnFindPath_ButtonClick);
+            // 
+            // btnHelp
+            // 
+            this.btnHelp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnHelp.Image = ((System.Drawing.Image)(resources.GetObject("btnHelp.Image")));
+            this.btnHelp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(51, 20);
+            this.btnHelp.Text = "HELP";
+            this.btnHelp.ButtonClick += new System.EventHandler(this.btnHelp_ButtonClick);
             // 
             // Form1
             // 
@@ -187,6 +199,7 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel lblStatus;
         private System.Windows.Forms.ToolStripSplitButton btnFindPath;
+        private System.Windows.Forms.ToolStripSplitButton btnHelp;
     }
 }
 

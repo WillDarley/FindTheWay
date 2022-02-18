@@ -324,10 +324,14 @@ namespace FindTheWay
             return neighbours;
         }
 
-        static void Trail()
+        static void Trail()  // this function is the visulisation
         {
-           destin
+           
         }
 
+        private void btnHelp_ButtonClick(object sender, EventArgs e) // Help button on the user interface
+        {
+            MessageBox.Show(" Click a square to change it's colour,\n Green = Start Point,\n Red = End Point,\n Black = Obstacle");
+        }
     }
 }
