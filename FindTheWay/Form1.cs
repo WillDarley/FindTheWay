@@ -336,6 +336,11 @@ namespace FindTheWay
             {
                 this.currentNode = currentNode;
                 currentNode = SquareType.Path;
+
+                foreach(currentNode - 1)
+                {
+                    SquareType = SquareType.Path;
+                }
             }
         }
 
