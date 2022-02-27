@@ -11,7 +11,8 @@ namespace FindTheWay
         Normal,
         Obstacle,
         StartPoint,
-        EndPoint
+        EndPoint,
+        Path
     }
 
     class GridSquare : IComparable<GridSquare>

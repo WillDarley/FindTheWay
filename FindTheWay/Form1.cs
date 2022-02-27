@@ -100,6 +100,12 @@ namespace FindTheWay
                     }
                     g.FillRectangle(brush, x * w, y * h, w, h);
                     g.DrawRectangle(pen, x * w, y * h, w, h);
+
+                    // change colour for the path if found 
+                    if (square.type == SquareType.Path)
+                    {
+                        brush = brushTrail;
+                    }
                 }
             }
             panelVis.BackgroundImage = i;
@@ -324,9 +330,13 @@ namespace FindTheWay
             return neighbours;
         }
 
-        static void Trail()  // this function is the visulisation
+        public void Trail()  // this function is the visulisation
         {
-           
+           while(currentNode != SquareType.StartPoint)
+            {
+                this.currentNode = currentNode;
+                currentNode = SquareType.Path;
+            }
         }
 
         private void btnHelp_ButtonClick(object sender, EventArgs e) // Help button on the user interface
