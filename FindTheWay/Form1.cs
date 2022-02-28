@@ -60,7 +60,6 @@ namespace FindTheWay
             DrawGrid(x, y);
         }
 
-
         public void DrawGrid(int xSize, int ySize)
         {
             Bitmap i = new Bitmap(panelVis.Width, panelVis.Height);
@@ -189,8 +188,6 @@ namespace FindTheWay
 
             lblStatus.Text = "Finding shortest path";
 
-            //
-
             // run Dijkstra's algorithm
             /*
              * 1) Mark all nodes unvisited. Create a set of all the unvisited nodes called the unvisited set.
@@ -213,8 +210,6 @@ namespace FindTheWay
                 {
                     destinationNode = g;
                 }
-
-
             }
 
             /*
@@ -346,8 +341,6 @@ namespace FindTheWay
                 }
             }
         }
-
-        
 
         private void btnHelp_ButtonClick(object sender, EventArgs e) // Help button on the user interface
         {
