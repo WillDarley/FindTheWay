@@ -329,24 +329,30 @@ namespace FindTheWay
             }
             return neighbours;
         }
-
-        public void Trail()  // this function is the visulisation
+       
+        public void Trail()  // this function is the visulisation         // does not work 
         {
-           while(currentNode != SquareType.StartPoint)
+            if(lblStatus.Text == "Route found!")
             {
-                this.currentNode = currentNode;
-                currentNode = SquareType.Path;
-
-                foreach(currentNode - 1)
+                while(currentNode != SquareType.StartPoint)
                 {
-                    SquareType = SquareType.Path;
+                    this.currentNode = currentNode;
+                    currentNode = SquareType.Path;
+
+                    foreach (currentNode - 1)
+                    {
+                        SquareType = SquareType.Path;
+                    }
                 }
             }
         }
+
+        
 
         private void btnHelp_ButtonClick(object sender, EventArgs e) // Help button on the user interface
         {
             MessageBox.Show(" Click a square to change it's colour,\n Green = Start Point,\n Red = End Point,\n Black = Obstacle");
         }
+
     }
 }

@@ -52,10 +52,9 @@
             this.tabControl1.Controls.Add(this.panelVis);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1600, 865);
+            this.tabControl1.Size = new System.Drawing.Size(800, 450);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -65,59 +64,53 @@
             this.tabPage1.Controls.Add(this.txtXSize);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.btnGenerate);
-            this.tabPage1.Location = new System.Drawing.Point(8, 39);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.tabPage1.Size = new System.Drawing.Size(1584, 818);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Size = new System.Drawing.Size(792, 424);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Settings";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // txtYSize
             // 
-            this.txtYSize.Location = new System.Drawing.Point(130, 56);
-            this.txtYSize.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtYSize.Location = new System.Drawing.Point(65, 29);
             this.txtYSize.Name = "txtYSize";
-            this.txtYSize.Size = new System.Drawing.Size(196, 31);
+            this.txtYSize.Size = new System.Drawing.Size(100, 20);
             this.txtYSize.TabIndex = 4;
             this.txtYSize.Text = "10";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 62);
-            this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label2.Location = new System.Drawing.Point(8, 32);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(118, 25);
+            this.label2.Size = new System.Drawing.Size(57, 13);
             this.label2.TabIndex = 3;
             this.label2.Text = "Grid Y size";
             // 
             // txtXSize
             // 
-            this.txtXSize.Location = new System.Drawing.Point(130, 17);
-            this.txtXSize.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtXSize.Location = new System.Drawing.Point(65, 9);
             this.txtXSize.Name = "txtXSize";
-            this.txtXSize.Size = new System.Drawing.Size(196, 31);
+            this.txtXSize.Size = new System.Drawing.Size(100, 20);
             this.txtXSize.TabIndex = 2;
             this.txtXSize.Text = "10";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 23);
-            this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label1.Location = new System.Drawing.Point(8, 12);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(117, 25);
+            this.label1.Size = new System.Drawing.Size(57, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Grid X size";
             // 
             // btnGenerate
             // 
-            this.btnGenerate.Location = new System.Drawing.Point(22, 106);
-            this.btnGenerate.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnGenerate.Location = new System.Drawing.Point(11, 55);
             this.btnGenerate.Name = "btnGenerate";
-            this.btnGenerate.Size = new System.Drawing.Size(320, 60);
+            this.btnGenerate.Size = new System.Drawing.Size(160, 31);
             this.btnGenerate.TabIndex = 0;
             this.btnGenerate.Text = "Generate Grid";
             this.btnGenerate.UseVisualStyleBackColor = true;
@@ -125,11 +118,10 @@
             // 
             // panelVis
             // 
-            this.panelVis.Location = new System.Drawing.Point(8, 39);
-            this.panelVis.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panelVis.Location = new System.Drawing.Point(4, 22);
             this.panelVis.Name = "panelVis";
-            this.panelVis.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.panelVis.Size = new System.Drawing.Size(1584, 818);
+            this.panelVis.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.panelVis.Size = new System.Drawing.Size(792, 424);
             this.panelVis.TabIndex = 1;
             this.panelVis.Text = "Visualisation";
             this.panelVis.UseVisualStyleBackColor = true;
@@ -143,17 +135,16 @@
             this.lblStatus,
             this.btnFindPath,
             this.btnHelp});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 823);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 428);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Padding = new System.Windows.Forms.Padding(2, 0, 28, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1600, 42);
+            this.statusStrip1.Size = new System.Drawing.Size(800, 22);
             this.statusStrip1.TabIndex = 6;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // lblStatus
             // 
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(453, 32);
+            this.lblStatus.Size = new System.Drawing.Size(219, 17);
             this.lblStatus.Text = "Choose the grid size then press generate";
             // 
             // btnFindPath
@@ -162,7 +153,7 @@
             this.btnFindPath.Image = ((System.Drawing.Image)(resources.GetObject("btnFindPath.Image")));
             this.btnFindPath.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnFindPath.Name = "btnFindPath";
-            this.btnFindPath.Size = new System.Drawing.Size(141, 38);
+            this.btnFindPath.Size = new System.Drawing.Size(73, 20);
             this.btnFindPath.Text = "Find Path";
             this.btnFindPath.ButtonClick += new System.EventHandler(this.btnFindPath_ButtonClick);
             // 
@@ -172,18 +163,17 @@
             this.btnHelp.Image = ((System.Drawing.Image)(resources.GetObject("btnHelp.Image")));
             this.btnHelp.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnHelp.Name = "btnHelp";
-            this.btnHelp.Size = new System.Drawing.Size(95, 38);
+            this.btnHelp.Size = new System.Drawing.Size(51, 20);
             this.btnHelp.Text = "HELP";
             this.btnHelp.ButtonClick += new System.EventHandler(this.btnHelp_ButtonClick);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1600, 865);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tabControl1);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "Form1";
             this.Text = "The Way";
             this.Resize += new System.EventHandler(this.Form1_Resize);
