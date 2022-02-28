@@ -325,12 +325,12 @@ namespace FindTheWay
             return neighbours;
         }
        
-        public void Trail()  // this function is the visulisation         // does not work 
+        public void Trail()  // this function is the visulisation            // does not work 
         {
-            if(lblStatus.Text == "Route found!")
-            {
-                while(currentNode != SquareType.StartPoint)
-                {
+            if(lblStatus.Text == "Route found!")                             // problems: 1. currentNode not recognised in this function
+            {                                                                //           2. squareType is not being used correctly
+                while(currentNode != SquareType.StartPoint)                  //           3. Inefficient to use an if statement to run this function
+                {                                                     
                     this.currentNode = currentNode;
                     currentNode = SquareType.Path;
 
