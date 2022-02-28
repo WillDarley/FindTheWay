@@ -324,12 +324,16 @@ namespace FindTheWay
             }
             return neighbours;
         }
-       
-        public void Trail()  // this function is the visulisation            // does not work 
+
+        // problems:       1. currentNode not recognised in this function
+        //                 2. squareType is not being used correctly on line 339
+        //                 3. Inefficient to use an if statement to run this function
+
+        public void Trail()  // this function is the visulisation           
         {
-            if(lblStatus.Text == "Route found!")                             // problems: 1. currentNode not recognised in this function
-            {                                                                //           2. squareType is not being used correctly
-                while(currentNode != SquareType.StartPoint)                  //           3. Inefficient to use an if statement to run this function
+            if(lblStatus.Text == "Route found!")                            
+            {
+                while(currentNode != SquareType.StartPoint)               
                 {                                                     
                     this.currentNode = currentNode;
                     currentNode = SquareType.Path;
@@ -342,7 +346,7 @@ namespace FindTheWay
             }
         }
 
-        private void btnHelp_ButtonClick(object sender, EventArgs e) // Help button on the user interface
+        private void btnHelp_ButtonClick(object sender, EventArgs e)  // Help button on the user interface
         {
             MessageBox.Show(" Click a square to change it's colour,\n Green = Start Point,\n Red = End Point,\n Black = Obstacle");
         }
